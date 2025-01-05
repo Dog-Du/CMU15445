@@ -1,0 +1,263 @@
+> ctest . -R ^LockManagerRowTest.BasicTest$ --verbose
+UpdateCTestConfiguration  from :/autograder/source/bustub/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/autograder/source/bustub/build/DartConfiguration.tcl
+Test project /autograder/source/bustub/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 17
+    Start 17: LockManagerRowTest.BasicTest
+
+17: Test command: /autograder/source/bustub/build/test/grading_lock_manager_row_test "--gtest_filter=LockManagerRowTest.BasicTest" "--gtest_also_run_disabled_tests" "--gtest_color=auto" "--gtest_output=xml:/autograder/source/bustub/build/test/grading_lock_manager_row_test.xml" "--gtest_catch_exceptions=0"
+17: Test timeout computed to be: 120
+17: Running main() from gmock_main.cc
+17: Note: Google Test filter = LockManagerRowTest.BasicTest
+17: [==========] Running 1 test from 1 test suite.
+17: [----------] Global test environment set-up.
+17: [----------] 1 test from LockManagerRowTest
+17: [ RUN      ] LockManagerRowTest.BasicTest
+17: AddressSanitizer:DEADLYSIGNAL
+17: =================================================================
+17: ==3923==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000060 (pc 0x7fd045b37f74 bp 0x7fd0410fc020 sp 0x7fd0410fc008 T3)
+17: ==3923==The signal is caused by a READ memory access.
+17: ==3923==Hint: address points to the zero page.
+17:     #0 0x7fd045b37f74 in pthread_mutex_lock nptl/./nptl/pthread_mutex_lock.c:80:23
+17:     #1 0x52ffd2 in __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/gthr-default.h:749:12
+17:     #2 0x535814 in std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_mutex.h:100:17
+17:     #3 0x54c13d in std::unique_lock<std::mutex>::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/unique_lock.h:139:17
+17:     #4 0x535b19 in std::unique_lock<std::mutex>::unique_lock(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/unique_lock.h:69:2
+17:     #5 0x528ce9 in bustub::LockManager::LockRow(bustub::Transaction*, bustub::LockManager::LockMode, unsigned int const&, bustub::RID const&) /autograder/source/bustub/src/concurrency/lock_manager.cpp:493:32
+17:     #6 0x4f183e in bustub::BasicTest1()::$_0::operator()(int) const /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:86:20
+17:     #7 0x4f0f9d in void std::__invoke_impl<void, bustub::BasicTest1()::$_0, int>(std::__invoke_other, bustub::BasicTest1()::$_0&&, int&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:61:14
+17:     #8 0x4f0eb1 in std::__invoke_result<bustub::BasicTest1()::$_0, int>::type std::__invoke<bustub::BasicTest1()::$_0, int>(bustub::BasicTest1()::$_0&&, int&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:96:14
+17:     #9 0x4f0e71 in void std::thread::_Invoker<std::tuple<bustub::BasicTest1()::$_0, int> >::_M_invoke<0ul, 1ul>(std::_Index_tuple<0ul, 1ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:252:13
+17:     #10 0x4f0e24 in std::thread::_Invoker<std::tuple<bustub::BasicTest1()::$_0, int> >::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:259:11
+17:     #11 0x4f0d68 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<bustub::BasicTest1()::$_0, int> > >::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:210:13
+17:     #12 0x7fd045eab2b2  (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc2b2)
+17:     #13 0x7fd045b34b42 in start_thread nptl/./nptl/pthread_create.c:442:8
+17:     #14 0x7fd045bc5bb3 in clone misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:100
+17:
+17: AddressSanitizer can not provide additional info.
+17: SUMMARY: AddressSanitizer: SEGV nptl/./nptl/pthread_mutex_lock.c:80:23 in pthread_mutex_lock
+17: Thread T3 created by T1 here:
+17:     #0 0x49102c in pthread_create (/autograder/source/bustub/build/test/grading_lock_manager_row_test+0x49102c)
+17:     #1 0x7fd045eab388 in std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc388)
+17:     #2 0x4dde74 in bustub::BasicTest1() /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:110:26
+17:     #3 0x4fc4fa in bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11::operator()(std::promise<bool>&) const /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:616:5
+17:     #4 0x4fc419 in void std::__invoke_impl<void, bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11, std::reference_wrapper<std::promise<bool> > >(std::__invoke_other, bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11&&, std::reference_wrapper<std::promise<bool> >&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:61:14
+17:     #5 0x4fc361 in std::__invoke_result<bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11, std::reference_wrapper<std::promise<bool> > >::type std::__invoke<bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11, std::reference_wrapper<std::promise<bool> > >(bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11&&, std::reference_wrapper<std::promise<bool> >&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:96:14
+17:     #6 0x4fc321 in void std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11, std::reference_wrapper<std::promise<bool> > > >::_M_invoke<0ul, 1ul>(std::_Index_tuple<0ul, 1ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:252:13
+17:     #7 0x4fc2d4 in std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11, std::reference_wrapper<std::promise<bool> > > >::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:259:11
+17:     #8 0x4fc238 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_BasicTest_Test::TestBody()::$_11, std::reference_wrapper<std::promise<bool> > > > >::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:210:13
+17:     #9 0x7fd045eab2b2  (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc2b2)
+17:
+17: Thread T1 created by T0 here:
+17:     #0 0x49102c in pthread_create (/autograder/source/bustub/build/test/grading_lock_manager_row_test+0x49102c)
+17:     #1 0x7fd045eab388 in std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc388)
+17:     #2 0x4edb45 in bustub::LockManagerRowTest_BasicTest_Test::TestBody() /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:614:3
+17:     #3 0x65bbc2 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2657:12
+17:     #4 0x61119c in testing::Test::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2674:5
+17:     #5 0x612e64 in testing::TestInfo::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2853:11
+17:     #6 0x61450a in testing::TestSuite::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:3012:30
+17:     #7 0x637e4c in testing::internal::UnitTestImpl::RunAllTests() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:5870:44
+17:     #8 0x661c09 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2657:12
+17:     #9 0x637188 in testing::UnitTest::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:5444:10
+17:     #10 0x6bb780 in RUN_ALL_TESTS() /autograder/source/bustub/third_party/googletest/googletest/include/gtest/gtest.h:2293:73
+17:     #11 0x6bb6d1 in main /autograder/source/bustub/third_party/googletest/googlemock/src/gmock_main.cc:70:10
+17:     #12 0x7fd045ac9d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+17:
+17: ==3923==ABORTING
+1/1 Test #17: LockManagerRowTest.BasicTest .....***Failed    0.14 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.14 sec
+
+The following tests FAILED:
+	 17 - LockManagerRowTest.BasicTest (Failed)
+Errors while running CTest
+Output from these tests are in: /autograder/source/bustub/build/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+
+Program exited with 8 in 0.150s
+
+
+
+
+
+
+> ctest . -R ^LockManagerRowTest.TableTest$ --verbose
+UpdateCTestConfiguration  from :/autograder/source/bustub/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/autograder/source/bustub/build/DartConfiguration.tcl
+Test project /autograder/source/bustub/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 18
+    Start 18: LockManagerRowTest.TableTest
+
+18: Test command: /autograder/source/bustub/build/test/grading_lock_manager_row_test "--gtest_filter=LockManagerRowTest.TableTest" "--gtest_also_run_disabled_tests" "--gtest_color=auto" "--gtest_output=xml:/autograder/source/bustub/build/test/grading_lock_manager_row_test.xml" "--gtest_catch_exceptions=0"
+18: Test timeout computed to be: 120
+18: Running main() from gmock_main.cc
+18: Note: Google Test filter = LockManagerRowTest.TableTest
+18: [==========] Running 1 test from 1 test suite.
+18: [----------] Global test environment set-up.
+18: [----------] 1 test from LockManagerRowTest
+18: [ RUN      ] LockManagerRowTest.TableTest
+18: AddressSanitizer:DEADLYSIGNAL
+18: =================================================================
+18: ==3931==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000060 (pc 0x7f755a8a2f74 bp 0x7f7555dfc180 sp 0x7f7555dfc168 T3)
+18: ==3931==The signal is caused by a READ memory access.
+18: ==3931==Hint: address points to the zero page.
+18:     #0 0x7f755a8a2f74 in pthread_mutex_lock nptl/./nptl/pthread_mutex_lock.c:80:23
+18:     #1 0x52ffd2 in __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/gthr-default.h:749:12
+18:     #2 0x535814 in std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_mutex.h:100:17
+18:     #3 0x54c13d in std::unique_lock<std::mutex>::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/unique_lock.h:139:17
+18:     #4 0x535b19 in std::unique_lock<std::mutex>::unique_lock(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/unique_lock.h:69:2
+18:     #5 0x528ce9 in bustub::LockManager::LockRow(bustub::Transaction*, bustub::LockManager::LockMode, unsigned int const&, bustub::RID const&) /autograder/source/bustub/src/concurrency/lock_manager.cpp:493:32
+18:     #6 0x4f655b in bustub::TableTest1()::$_3::operator()(int) const /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:242:22
+18:     #7 0x4f5c8d in void std::__invoke_impl<void, bustub::TableTest1()::$_3, int>(std::__invoke_other, bustub::TableTest1()::$_3&&, int&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:61:14
+18:     #8 0x4f5ba1 in std::__invoke_result<bustub::TableTest1()::$_3, int>::type std::__invoke<bustub::TableTest1()::$_3, int>(bustub::TableTest1()::$_3&&, int&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:96:14
+18:     #9 0x4f5b61 in void std::thread::_Invoker<std::tuple<bustub::TableTest1()::$_3, int> >::_M_invoke<0ul, 1ul>(std::_Index_tuple<0ul, 1ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:252:13
+18:     #10 0x4f5b14 in std::thread::_Invoker<std::tuple<bustub::TableTest1()::$_3, int> >::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:259:11
+18:     #11 0x4f5a58 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<bustub::TableTest1()::$_3, int> > >::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:210:13
+18:     #12 0x7f755ac162b2  (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc2b2)
+18:     #13 0x7f755a89fb42 in start_thread nptl/./nptl/pthread_create.c:442:8
+18:     #14 0x7f755a930bb3 in clone misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:100
+18:
+18: AddressSanitizer can not provide additional info.
+18: SUMMARY: AddressSanitizer: SEGV nptl/./nptl/pthread_mutex_lock.c:80:23 in pthread_mutex_lock
+18: Thread T3 created by T1 here:
+18:     #0 0x49102c in pthread_create (/autograder/source/bustub/build/test/grading_lock_manager_row_test+0x49102c)
+18:     #1 0x7f755ac16388 in std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc388)
+18:     #2 0x4e15ab in bustub::TableTest1() /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:264:26
+18:     #3 0x4fca9a in bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12::operator()(std::promise<bool>&) const /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:626:5
+18:     #4 0x4fc9b9 in void std::__invoke_impl<void, bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12, std::reference_wrapper<std::promise<bool> > >(std::__invoke_other, bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12&&, std::reference_wrapper<std::promise<bool> >&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:61:14
+18:     #5 0x4fc901 in std::__invoke_result<bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12, std::reference_wrapper<std::promise<bool> > >::type std::__invoke<bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12, std::reference_wrapper<std::promise<bool> > >(bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12&&, std::reference_wrapper<std::promise<bool> >&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:96:14
+18:     #6 0x4fc8c1 in void std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12, std::reference_wrapper<std::promise<bool> > > >::_M_invoke<0ul, 1ul>(std::_Index_tuple<0ul, 1ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:252:13
+18:     #7 0x4fc874 in std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12, std::reference_wrapper<std::promise<bool> > > >::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:259:11
+18:     #8 0x4fc7d8 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_TableTest_Test::TestBody()::$_12, std::reference_wrapper<std::promise<bool> > > > >::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:210:13
+18:     #9 0x7f755ac162b2  (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc2b2)
+18:
+18: Thread T1 created by T0 here:
+18:     #0 0x49102c in pthread_create (/autograder/source/bustub/build/test/grading_lock_manager_row_test+0x49102c)
+18:     #1 0x7f755ac16388 in std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc388)
+18:     #2 0x4ee585 in bustub::LockManagerRowTest_TableTest_Test::TestBody() /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:624:3
+18:     #3 0x65bbc2 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2657:12
+18:     #4 0x61119c in testing::Test::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2674:5
+18:     #5 0x612e64 in testing::TestInfo::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2853:11
+18:     #6 0x61450a in testing::TestSuite::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:3012:30
+18:     #7 0x637e4c in testing::internal::UnitTestImpl::RunAllTests() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:5870:44
+18:     #8 0x661c09 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2657:12
+18:     #9 0x637188 in testing::UnitTest::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:5444:10
+18:     #10 0x6bb780 in RUN_ALL_TESTS() /autograder/source/bustub/third_party/googletest/googletest/include/gtest/gtest.h:2293:73
+18:     #11 0x6bb6d1 in main /autograder/source/bustub/third_party/googletest/googlemock/src/gmock_main.cc:70:10
+18:     #12 0x7f755a834d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+18:
+18: ==3931==ABORTING
+1/1 Test #18: LockManagerRowTest.TableTest .....***Failed    0.13 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.14 sec
+
+The following tests FAILED:
+	 18 - LockManagerRowTest.TableTest (Failed)
+Errors while running CTest
+Output from these tests are in: /autograder/source/bustub/build/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+
+Program exited with 8 in 0.145s
+
+
+> ctest . -R ^LockManagerRowTest.BlockTest$ --verbose
+UpdateCTestConfiguration  from :/autograder/source/bustub/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/autograder/source/bustub/build/DartConfiguration.tcl
+Test project /autograder/source/bustub/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 19
+    Start 19: LockManagerRowTest.BlockTest
+
+19: Test command: /autograder/source/bustub/build/test/grading_lock_manager_row_test "--gtest_filter=LockManagerRowTest.BlockTest" "--gtest_also_run_disabled_tests" "--gtest_color=auto" "--gtest_output=xml:/autograder/source/bustub/build/test/grading_lock_manager_row_test.xml" "--gtest_catch_exceptions=0"
+19: Test timeout computed to be: 120
+19: Running main() from gmock_main.cc
+19: Note: Google Test filter = LockManagerRowTest.BlockTest
+19: [==========] Running 1 test from 1 test suite.
+19: [----------] Global test environment set-up.
+19: [----------] 1 test from LockManagerRowTest
+19: [ RUN      ] LockManagerRowTest.BlockTest
+19: AddressSanitizer:DEADLYSIGNAL
+19: =================================================================
+19: ==3943==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000060 (pc 0x7f7a94a71f74 bp 0x7f7a8fffc360 sp 0x7f7a8fffc348 T3)
+19: ==3943==The signal is caused by a READ memory access.
+19: ==3943==Hint: address points to the zero page.
+19:     #0 0x7f7a94a71f74 in pthread_mutex_lock nptl/./nptl/pthread_mutex_lock.c:80:23
+19:     #1 0x52ffd2 in __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/gthr-default.h:749:12
+19:     #2 0x535814 in std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_mutex.h:100:17
+19:     #3 0x54c13d in std::unique_lock<std::mutex>::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/unique_lock.h:139:17
+19:     #4 0x535b19 in std::unique_lock<std::mutex>::unique_lock(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/unique_lock.h:69:2
+19:     #5 0x528ce9 in bustub::LockManager::LockRow(bustub::Transaction*, bustub::LockManager::LockMode, unsigned int const&, bustub::RID const&) /autograder/source/bustub/src/concurrency/lock_manager.cpp:493:32
+19:     #6 0x4f9461 in bustub::BlockTest1()::$_5::operator()(int) const /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:350:20
+19:     #7 0x4f8ccd in void std::__invoke_impl<void, bustub::BlockTest1()::$_5, int>(std::__invoke_other, bustub::BlockTest1()::$_5&&, int&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:61:14
+19:     #8 0x4f8be1 in std::__invoke_result<bustub::BlockTest1()::$_5, int>::type std::__invoke<bustub::BlockTest1()::$_5, int>(bustub::BlockTest1()::$_5&&, int&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:96:14
+19:     #9 0x4f8ba1 in void std::thread::_Invoker<std::tuple<bustub::BlockTest1()::$_5, int> >::_M_invoke<0ul, 1ul>(std::_Index_tuple<0ul, 1ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:252:13
+19:     #10 0x4f8b54 in std::thread::_Invoker<std::tuple<bustub::BlockTest1()::$_5, int> >::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:259:11
+19:     #11 0x4f8a98 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<bustub::BlockTest1()::$_5, int> > >::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:210:13
+19:     #12 0x7f7a94de52b2  (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc2b2)
+19:     #13 0x7f7a94a6eb42 in start_thread nptl/./nptl/pthread_create.c:442:8
+19:     #14 0x7f7a94affbb3 in clone misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:100
+19:
+19: AddressSanitizer can not provide additional info.
+19: SUMMARY: AddressSanitizer: SEGV nptl/./nptl/pthread_mutex_lock.c:80:23 in pthread_mutex_lock
+19: Thread T3 created by T1 here:
+19:     #0 0x49102c in pthread_create (/autograder/source/bustub/build/test/grading_lock_manager_row_test+0x49102c)
+19:     #1 0x7f7a94de5388 in std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc388)
+19:     #2 0x4e3b4a in bustub::BlockTest1() /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:371:26
+19:     #3 0x4fcfda in bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13::operator()(std::promise<bool>&) const /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:635:5
+19:     #4 0x4fcef9 in void std::__invoke_impl<void, bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13, std::reference_wrapper<std::promise<bool> > >(std::__invoke_other, bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13&&, std::reference_wrapper<std::promise<bool> >&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:61:14
+19:     #5 0x4fce41 in std::__invoke_result<bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13, std::reference_wrapper<std::promise<bool> > >::type std::__invoke<bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13, std::reference_wrapper<std::promise<bool> > >(bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13&&, std::reference_wrapper<std::promise<bool> >&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/invoke.h:96:14
+19:     #6 0x4fce01 in void std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13, std::reference_wrapper<std::promise<bool> > > >::_M_invoke<0ul, 1ul>(std::_Index_tuple<0ul, 1ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:252:13
+19:     #7 0x4fcdb4 in std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13, std::reference_wrapper<std::promise<bool> > > >::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:259:11
+19:     #8 0x4fcd18 in std::thread::_State_impl<std::thread::_Invoker<std::tuple<bustub::LockManagerRowTest_BlockTest_Test::TestBody()::$_13, std::reference_wrapper<std::promise<bool> > > > >::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/std_thread.h:210:13
+19:     #9 0x7f7a94de52b2  (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc2b2)
+19:
+19: Thread T1 created by T0 here:
+19:     #0 0x49102c in pthread_create (/autograder/source/bustub/build/test/grading_lock_manager_row_test+0x49102c)
+19:     #1 0x7f7a94de5388 in std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (/lib/x86_64-linux-gnu/libstdc++.so.6+0xdc388)
+19:     #2 0x4eefc5 in bustub::LockManagerRowTest_BlockTest_Test::TestBody() /autograder/source/bustub/test/concurrency/grading_lock_manager_row_test.cpp:633:3
+19:     #3 0x65bbc2 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2657:12
+19:     #4 0x61119c in testing::Test::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2674:5
+19:     #5 0x612e64 in testing::TestInfo::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2853:11
+19:     #6 0x61450a in testing::TestSuite::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:3012:30
+19:     #7 0x637e4c in testing::internal::UnitTestImpl::RunAllTests() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:5870:44
+19:     #8 0x661c09 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:2657:12
+19:     #9 0x637188 in testing::UnitTest::Run() /autograder/source/bustub/third_party/googletest/googletest/src/gtest.cc:5444:10
+19:     #10 0x6bb780 in RUN_ALL_TESTS() /autograder/source/bustub/third_party/googletest/googletest/include/gtest/gtest.h:2293:73
+19:     #11 0x6bb6d1 in main /autograder/source/bustub/third_party/googletest/googlemock/src/gmock_main.cc:70:10
+19:     #12 0x7f7a94a03d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+19:
+19: ==3943==ABORTING
+1/1 Test #19: LockManagerRowTest.BlockTest .....***Failed    0.13 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.14 sec
+
+The following tests FAILED:
+	 19 - LockManagerRowTest.BlockTest (Failed)
+Errors while running CTest
+Output from these tests are in: /autograder/source/bustub/build/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+
+Program exited with 8 in 0.145s

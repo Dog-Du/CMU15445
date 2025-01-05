@@ -1,0 +1,16 @@
+add_library(
+  bustub_container_disk_hash
+  OBJECT
+        disk_extendible_hash_table.cpp
+        linear_probe_hash_table.cpp)
+
+set(ALL_OBJECT_FILES
+    ${ALL_OBJECT_FILES} $<TARGET_OBJECTS:bustub_container_disk_hash>
+    PARENT_SCOPE)
+
+# Configure CCache if available
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+        set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+        set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+endif(CCACHE_FOUND)
